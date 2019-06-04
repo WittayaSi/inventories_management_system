@@ -1,0 +1,5 @@
+{
+    "mongodbURI": "mongodb://inventories:in1234567@shoppinglist-shard-00-00-jkels.mongodb.net:27017,shoppinglist-shard-00-01-jkels.mongodb.net:27017,shoppinglist-shard-00-02-jkels.mongodb.net:27017/inventories?ssl=true&replicaSet=ShoppingList-shard-0&authSource=admin&retryWrites=true",
+    "jwtSecret": "jwt secret here",
+    "localMongodbURI": "mongodb://localhost:27017/ims"
+}
