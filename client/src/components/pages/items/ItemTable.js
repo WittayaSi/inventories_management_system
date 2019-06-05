@@ -17,7 +17,7 @@ class ItemTable extends Component {
     }
 
     onClickDelete = (id) => {
-        console.log(`Will delete item id is : ${id}`)
+        //console.log(`Will delete item id is : ${id}`)
         this.props.deleteItem(id)
     }
 
@@ -37,14 +37,17 @@ class ItemTable extends Component {
                 <tbody>
                     { items.map((item, index) => (
                         <tr key={index}>
-                            <th scope="row">{index+=1}</th>
+                            <th scope="row" style={{textAlign: "center"}}>{index+=1}</th>
                             <td>{ item.item_name }</td>
                             <td style={{textAlign: "center"}}>{ item.item_unit }</td>
                             <td style={{textAlign: "center"}}>{ item.item_price }</td>
                             <td style={{textAlign: "center"}}>
                                 <ButtonGroup size="sm">
-                                    <Button color="danger" onClick={() => this.onClickDelete(item._id)}>ลบ</Button>  
-                                    <UpdateItemModal item={item}/>  
+                                    <Button color="danger" onClick={() => {
+                                        if (window.confirm(`Are you sure to delete this item?`))
+                                            this.onClickDelete(item._id)
+                                    }}>ลบ</Button>  
+                                    <UpdateItemModal item={item}/>
                                 </ButtonGroup>
                             </td>
                         </tr>

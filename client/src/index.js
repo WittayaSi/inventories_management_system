@@ -8,6 +8,11 @@ import App from './App'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
+import { getItem } from './actions/itemAction'
+import { getCategory } from './actions/categoryAction'
+
+store.dispatch(getItem())
+store.dispatch(getCategory())
 
 
 const app = (

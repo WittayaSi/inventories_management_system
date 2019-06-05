@@ -29,7 +29,8 @@ export default function(state=initialState, action){
             return {
                 ...state,
                 items: action.payload,
-                loading: false
+                loading: false,
+                //isActionComplete: false
             }
         case ADD_ITEM:
             return {
@@ -38,11 +39,11 @@ export default function(state=initialState, action){
                 isActionComplete: true
             }
         case UPDATE_ITEM:
-            const newItem =  state.items.filter( item => item._id !== action.payload._id)
+            //const removed_item = state.items.filter( item => item._id !== action.payload.id)
             return {
                 ...state,
-                items: [action.payload, ...newItem],
-                isActionComplete: true
+                isActionComplete: true,
+                //items: [...state.items]                
             }
         case DELETE_ITEM: 
             return {

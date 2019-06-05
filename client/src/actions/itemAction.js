@@ -16,10 +16,10 @@ export const setItemLoading = () => {
     }
 }
 
-export const setIsActionComplete = () => {
-    return {
+export const setIsActionComplete = () => dispatch => {
+    dispatch({
         type: IS_ACTION_COMPLETE
-    }
+    })
 }
 
 export const getItem = () => dispatch => {
@@ -27,6 +27,7 @@ export const getItem = () => dispatch => {
     axios
         .get('/api/items')
         .then( res => {
+            console.log(res.data)
             dispatch({
                 type: GET_ITEM,
                 payload: res.data
@@ -41,6 +42,7 @@ export const getItem = () => dispatch => {
 }
 
 export const addItem = (item) => dispatch => {
+    //console.log(item)
     axios
         .post('/api/items', item)
         .then( res => {
@@ -61,11 +63,12 @@ export const addItem = (item) => dispatch => {
 export const updateItem = (id, item) => dispatch => {
     console.log(id, item)
     axios
-        .put(`/api/item/${id}`, item)
+        .patch(`/api/items/${id}`, item)
         .then( res => {
+            console.log(res.data)
+            dispatch(getItem())
             dispatch({
-                type: UPDATE_ITEM,
-                payload: res.data
+                type: UPDATE_ITEM
             })
         })
         .catch( err => {

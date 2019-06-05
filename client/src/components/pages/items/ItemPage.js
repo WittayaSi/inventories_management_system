@@ -5,17 +5,16 @@ import PropTypes from 'prop-types'
 import { getItem } from '../../../actions/itemAction'
 import AddItemModal from './AddItemModal';
 import ItemTable from './ItemTable'
-import ItemInfo from './ItemInfo'
+//import ItemInfo from './ItemInfo'
 
 class ItemPage extends Component {
     static propTypes = {
         items: PropTypes.array.isRequired
     }
 
-    componentDidMount() {
-        console.log('Item Page componentDidMount')
-        this.props.getItem()
-    }
+    // componentDidMount() {
+    //     this.props.getItem()
+    // }
 
     render() {
         const { items } = this.props

@@ -43,7 +43,7 @@ export default class NavBar extends Component {
                                     <NavLink href="/" active={this.state.currentUrl === "/"}>หน้าหลัก</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="/item" active={this.state.currentUrl === "/item"}>วัสดุ</NavLink>
+                                    <NavLink href="/items" active={this.state.currentUrl === "/items"}>วัสดุ</NavLink>
                                 </NavItem>
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>

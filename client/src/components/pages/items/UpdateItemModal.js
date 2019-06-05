@@ -33,9 +33,21 @@ class UpdateItemModal extends Component {
         isActionComplete: PropTypes.bool.isRequired,
         error: PropTypes.object.isRequired
     }
+
+    componentDidMount() {
+        const { item_name, item_unit, item_price } = this.props.item  
+        this.setState({
+            item: {
+                item_name,
+                item_unit,
+                item_price
+            }
+        })
+    }
     
     componentDidUpdate(prevProps) {
         const { error, isActionComplete } = this.props
+              
         
         if(error !== prevProps.error) {
             if(error.id === 'UPDATE_ITEM'){
@@ -51,11 +63,10 @@ class UpdateItemModal extends Component {
         if(this.state.modal){
             if(isActionComplete){
                 this.toggle()
-                this.dispatch(setIsActionComplete())
+                this.props.setIsActionComplete()
             }
         }
-    } 
-
+    }
     // toggle add modal
     toggle = () => {
         // Clear all error when toggle modal
@@ -63,21 +74,6 @@ class UpdateItemModal extends Component {
         this.setState({
             modal: !this.state.modal,
         });
-    }
-
-    onClickToggleModal = () => {
-        
-        const { item_name, item_unit, item_price } = this.props.item
-        
-        this.setState({
-            item: {
-                item_name,
-                item_unit,
-                item_price
-            }
-        })
-
-        this.toggle()
     }
 
     onChange = e => {
@@ -98,8 +94,8 @@ class UpdateItemModal extends Component {
 
     render() {
         return (
-            <div>
-                <Button color="primary" onClick={this.onClickToggleModal}>
+            <>
+                <Button color="primary" onClick={this.toggle}>
                     แก้ไข
                 </Button>
 
@@ -162,7 +158,7 @@ class UpdateItemModal extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
-            </div>
+            </>
         )
     }
 }

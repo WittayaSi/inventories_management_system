@@ -21,6 +21,7 @@ class AddItemModal extends Component {
     state = {
         modal: false,
         item: {
+            category_id: null,
             item_name: '',
             item_unit: '',
             item_price: 0
@@ -29,6 +30,7 @@ class AddItemModal extends Component {
     }
 
     static propTypes = {
+        categories: PropTypes.array.isRequired,
         addItem: PropTypes.func.isRequired,
         setIsActionComplete: PropTypes.func.isRequired,
         clearError: PropTypes.func.isRequired,
@@ -53,7 +55,7 @@ class AddItemModal extends Component {
         if(this.state.modal){
             if(isActionComplete){
                 this.toggle()
-                this.dispatch(setIsActionComplete())
+                this.props.setIsActionComplete()
             }
         }
     } 
@@ -61,11 +63,18 @@ class AddItemModal extends Component {
     // toggle add modal
     toggle = () => {
         // Clear all error when toggle modal
-        this.props.clearError()
+        this.props.clearError(this.state.modal)
 
         this.setState({
-            modal: !this.state.modal
-        });
+            modal: !this.state.modal,
+            item: {
+                ...this.state.item,
+                category_id: null,
+                item_name: '',
+                item_unit: '',
+                item_price: 0
+            }
+        })
     }
 
     onChange = e => {
@@ -87,6 +96,7 @@ class AddItemModal extends Component {
     }
 
     render() {
+        const { categories } = this.props
         return (
             <Container>
 
@@ -105,6 +115,22 @@ class AddItemModal extends Component {
                         }
 
                         <Form onSubmit={ this.onSubmit }>
+
+                            <FormGroup>
+                                <Label for="category_id">Item Category</Label>
+                                <Input
+                                    type="select"
+                                    name="category_id"
+                                    id="category_id"
+                                    placeholder="Item Category"
+                                    onChange={ this.onChange }
+                                >
+                                    <option value="">Select Category</option>
+                                    {categories.map( (c, index) => (
+                                        <option value={c._id} key={index}>{ c.category_name }</option>
+                                    ))}
+                                </Input>
+                            </FormGroup>
 
                             <FormGroup>
                                 <Label for="item_name">Item Name</Label>
@@ -155,6 +181,7 @@ class AddItemModal extends Component {
 }
 
 const mapStateToProps = state => ({
+    categories: state.category.categories,
     isActionComplete: state.item.isActionComplete,
     error: state.error
 })
