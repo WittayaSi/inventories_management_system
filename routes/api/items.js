@@ -13,23 +13,8 @@ itemRouter.get('/', (req, res) => {
     Category.find({},{"category_items": 1})
         .sort({ created_at: -1 })
         .then( categories => {
-
-            // Destructure category to items
-            let items = []
-            items = categories.reduce((a, b) => {
-                const category_id = b._id
-                // create new array 
-                let newObject = []
-                newObject = b.category_items.reduce((x,y) => {
-                    // Create new item object
-                    let item = {
-                        category_id,
-                        ...y
-                    }
-                    return x.concat(item)
-                },[])
-                return a.concat(newObject)
-            },[])
+            // Call Category Model method
+            let items = Category.getItems(categories)
             res.json(items)
         })
 })

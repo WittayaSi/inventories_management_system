@@ -14,6 +14,9 @@ categoriesRouter.get('/', (req, res) => {
             .catch( err => res.json(err) )
 })
 
+// @route   POST /api/categories 
+// @desc    Create new Categories
+// @access  Public
 categoriesRouter.post('/', (req, res) => {
     const {category_name} = req.body
 
@@ -30,6 +33,15 @@ categoriesRouter.post('/', (req, res) => {
         .then( category => res.json(category) )
         .catch( err => res.json(err) )
 
+})
+
+// @route   DELETE /api/categories/:id
+// @desc    Delete a Categories
+// @access  Public
+categoriesRouter.delete('/:id', (req, res) => {
+    const category_id = req.params.id
+
+    res.json({ category_id })
 })
 
 module.exports = categoriesRouter
