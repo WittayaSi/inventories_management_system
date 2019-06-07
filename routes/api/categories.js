@@ -41,7 +41,9 @@ categoriesRouter.post('/', (req, res) => {
 categoriesRouter.delete('/:id', (req, res) => {
     const category_id = req.params.id
 
-    res.json({ category_id })
+    Category.deleteOne({_id: category_id})
+        .then((result) => res.json({success: true, result}))
+        .catch( err => res.status(404).json({success: false, error: err}))
 })
 
 module.exports = categoriesRouter

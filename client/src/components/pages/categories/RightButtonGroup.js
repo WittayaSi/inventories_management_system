@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import {ButtonGroup, Button} from 'reactstrap'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
+import { deleteCategory } from '../../../actions/categoryAction'
 import UpdateCategoryModal from './UpdateCategoryModal';
 
-export default class RightButtonGroup extends Component {
+class RightButtonGroup extends Component {
+
+    static propTypes = {
+        deleteCategory: PropTypes.func.isRequired
+    }
 
     onClickDeleteCategory = (category_id) => {
         console.log(category_id)
+        this.props.deleteCategory(category_id)
     }
 
     render() {
@@ -16,7 +25,7 @@ export default class RightButtonGroup extends Component {
                 {/* delete category button */}
                 <Button color="danger" onClick={ 
                     () => {
-                        if (window.confirm(`Are you sure to delete this item?`))
+                        if (window.confirm(`คุณแน่ใจว่าต้องการลบประเภทวัสดุนี้ หากลบวัสดุทั้งหมดจะถูกลบด้วย?`))
                             this.onClickDeleteCategory(id)
                     }
                 }>
@@ -29,3 +38,5 @@ export default class RightButtonGroup extends Component {
         )
     }
 }
+
+export default connect(null, { deleteCategory })(RightButtonGroup)

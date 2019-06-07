@@ -4,7 +4,8 @@ import {
     ADD_CATEGORY,
     UPDATE_CATEGORY,
     DELETE_CATEGORY,
-    IS_ACTION_COMPLETE
+    IS_ACTION_COMPLETE,
+    GET_ERROR
 } from '../constant'
 import axios from 'axios'
 import { setError } from './errorAction'
@@ -42,4 +43,22 @@ export const addCategory = (cat) => dispatch =>{
             })
         })
         .catch( err => dispatch(setError(err.response.data,err.response.status,'ADD_CATEGORY')))
+}
+
+export const deleteCategory = (id) => dispatch => {
+    axios
+        .delete(`/api/categories/${id}`)
+        .then( res => {
+            dispatch({
+                type: DELETE_CATEGORY,
+                payload: id
+            })
+        })
+        .catch( err => {
+            dispatch(setError(
+                err.response.data,
+                err.response.status,
+                'DELETE_CATEGORY'
+            ))
+        })
 }

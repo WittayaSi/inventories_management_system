@@ -37,6 +37,11 @@ export default function(state=initialState, action) {
                 categories: [...state.categories, action.payload],
                 isActionComplete: true
             }
+        case DELETE_CATEGORY:
+            return {
+                ...state,
+                categories: state.categories.filter( cat => cat._id !== action.payload)
+            }
         default:
             return state
     }
