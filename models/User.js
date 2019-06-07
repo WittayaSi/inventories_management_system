@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
+const now_utc = new Date(Date.now())
+const now_locale = new Date(now_utc.setHours(now_utc.getHours()+7)) 
+
 const UserSchema = new Schema({
     fullname: {
         type: String,
@@ -23,7 +26,7 @@ const UserSchema = new Schema({
     },
     created_at:{
         type: Date,
-        default: Date.now()
+        default: now_locale
     },
 })
 

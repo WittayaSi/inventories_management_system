@@ -9,6 +9,7 @@ import {
 } from '../constant'
 
 import { setError } from './errorAction'
+import { getCategory } from './categoryAction'
 
 export const setItemLoading = () => {
     return {
@@ -27,7 +28,7 @@ export const getItem = () => dispatch => {
     axios
         .get('/api/items')
         .then( res => {
-            console.log(res.data)
+            //console.log(res.data)
             dispatch({
                 type: GET_ITEM,
                 payload: res.data
@@ -42,7 +43,7 @@ export const getItem = () => dispatch => {
 }
 
 export const addItem = (item) => dispatch => {
-    //console.log(item)
+    
     axios
         .post('/api/items', item)
         .then( res => {
@@ -60,13 +61,14 @@ export const addItem = (item) => dispatch => {
         })
 }
 
-export const updateItem = (id, item) => dispatch => {
-    console.log(id, item)
+export const updateItem = (cid, iid, item) => dispatch => {
+    //console.log(id, item)
     axios
-        .patch(`/api/items/${id}`, item)
+        .patch(`/api/items/${cid}/${iid}`, item)
         .then( res => {
             console.log(res.data)
             dispatch(getItem())
+            dispatch(getCategory())
             dispatch({
                 type: UPDATE_ITEM
             })
@@ -80,13 +82,16 @@ export const updateItem = (id, item) => dispatch => {
         })
 }
 
-export const deleteItem = id => dispatch => {
+export const deleteItem = (category_id, item_id) => dispatch => {
+    // console.log(item_id, category_id)
     axios
-        .delete(`/api/items/${id}`)
+        .delete(`/api/items/${category_id}/${item_id}`)
         .then( res => {
+            dispatch(getItem())
+            dispatch(getCategory())
             dispatch({
                 type: DELETE_ITEM,
-                payload: id
+                payload: item_id
             })
         })
         .catch( err => {

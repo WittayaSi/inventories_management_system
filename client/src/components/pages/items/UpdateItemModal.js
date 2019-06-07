@@ -88,8 +88,8 @@ class UpdateItemModal extends Component {
     onSubmit = e => {
         e.preventDefault();
         const { item } = this.state
-        const { _id } = this.props.item
-        this.props.updateItem(_id, item)
+        const { category_id, _id } = this.props.item
+        this.props.updateItem(category_id, _id, item)
     }
 
     render() {

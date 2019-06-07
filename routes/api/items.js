@@ -1,4 +1,5 @@
 const express = require('express')
+const { ObjectId } = require('mongodb')
 
 const itemRouter = express.Router()
 
@@ -10,12 +11,13 @@ const Category = require('../../models/Category')
 // @access  Public 
 itemRouter.get('/', (req, res) => {
     //res.send('lsdkfjsdlfjksdlkj')
-    Category.find({},{"category_items": 1})
-        .sort({ created_at: -1 })
+    Category.find({},{ category_items: 1 })
+        .sort({ "category_items.created_at": -1 })
         .then( categories => {
             // Call Category Model method
             let items = Category.getItems(categories)
-            res.json(items)
+            let data = items.sort((a,b) => b.updated_at - a.updated_at)
+            res.json(data)
         })
 })
 
@@ -53,44 +55,45 @@ itemRouter.post('/', (req, res) => {
 // @route   PUT api/items/:id with item data
 // @desc    Create an new item
 // @access  Public
-itemRouter.patch('/:id', (req, res) => {
+itemRouter.patch('/:cid/:iid', (req, res) => {
 
     const { item_name, item_unit, item_price} = req.body
-    const id = req.params.id
+    const { cid, iid } = req.params
+    const now_utc = new Date(Date.now())
+    const now_locale = new Date(now_utc.setHours(now_utc.getHours()+7)) 
+    //console.log(cid, iid)
     const newItem = {
-        item_name,
-        item_unit,
-        item_price,
-        "udpated_at": Date.now()
+        "category_items.$.item_name": item_name,
+        "category_items.$.item_unit": item_unit,
+        "category_items.$.item_price": item_price,
+        "category_items.$.updated_at": now_locale
     }
 
     // Simple validation
-    if(!item_name || !item_unit){
+    if(!item_name || !item_unit || !item_price){
         return res.status(400).json({ message: 'Please enter all fields' })
     }
 
-    Item.updateOne(
-            { _id: id },
-            { $set: newItem },
-            { upsert:true }
-        )
-        .then( () => res.json({ success: true }))
-        .catch( err => res.json({success: false, error: err}))
+    Category.updateOne(
+        { _id: ObjectId(cid), category_items: { $elemMatch: { _id: ObjectId(iid) } } },
+        { $set: newItem }
+    )
+    .then( (result) => res.json({ success: true, result }))
+    .catch( err => res.json({success: false, error: err}))
 })
 
-// @route   POST api/items/:id
+// @route   DELETE api/items/:cid/:iid
 // @desc    Delete an item
 // @access  Public
-itemRouter.delete('/:id', (req, res) => {
-    Item.findById(req.params.id)
-        .then( item=>{
-            item.remove()
-                .then( () => res.json({success: true}) )
-                .catch( err => res.status(404).json({success: false, error: err}) )
-        })
-        .catch( err => {
-            res.status(404).json({success: false, error: err})
-        })
+itemRouter.delete('/:cid/:iid', (req, res) => {
+    const {cid, iid} = req.params
+    Category.updateOne(
+        { _id: cid },
+        { $pull: { category_items: { _id: ObjectId(iid) }} },
+        { upsert: true }
+    )
+    .then( (result)=> res.json(result) )
+    .catch( err => res.status(404).json({ success: false, error: err }))
 })
 
 module.exports = itemRouter

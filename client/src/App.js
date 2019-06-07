@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Container style={{marginTop: '1rem'}}>
+      <Container style={{marginTop: '5rem'}}>
         <Router />
       </Container>
     </div>

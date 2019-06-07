@@ -11,6 +11,8 @@ import './index.css'
 import { getItem } from './actions/itemAction'
 import { getCategory } from './actions/categoryAction'
 
+import * as serviceWorker from './serviceWorker';
+
 store.dispatch(getItem())
 store.dispatch(getCategory())
 
@@ -27,4 +29,6 @@ ReactDOM.render(
     app, 
     document.getElementById('root')
 )
+
+serviceWorker.unregister();
 

@@ -3,14 +3,21 @@ import {
     GET_CATEGORY,
     ADD_CATEGORY,
     UPDATE_CATEGORY,
-    DELETE_CATEGORY
+    DELETE_CATEGORY,
+    IS_ACTION_COMPLETE
 } from '../constant'
 import axios from 'axios'
-import { get } from 'https';
+import { setError } from './errorAction'
 
 export const setCategoryLoading = () => {
     return {
         type: CATEGORY_LOADING
+    }
+}
+
+export const setIsActionComplete = () => {
+    return {
+        type : IS_ACTION_COMPLETE
     }
 }
 
@@ -24,4 +31,15 @@ export const getCategory = () => dispatch => {
                 payload: res.data
             })
         })
+}
+
+export const addCategory = (cat) => dispatch =>{
+    axios.post('/api/categories', {cat})
+        .then( res => {
+            dispatch({
+                type: ADD_CATEGORY,
+                payload: res.data
+            })
+        })
+        .catch( err => dispatch(setError(err.response.data,err.response.status,'ADD_CATEGORY')))
 }

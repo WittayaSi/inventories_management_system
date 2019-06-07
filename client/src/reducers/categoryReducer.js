@@ -3,7 +3,8 @@ import {
     GET_CATEGORY,
     ADD_CATEGORY,
     UPDATE_CATEGORY,
-    DELETE_CATEGORY
+    DELETE_CATEGORY,
+    IS_ACTION_COMPLETE
 } from '../constant'
 
 const initialState = {
@@ -19,11 +20,22 @@ export default function(state=initialState, action) {
                 ...state,
                 loading: true
             }
+        case IS_ACTION_COMPLETE:
+            return {
+                ...state,
+                isActionComplete: false
+            }
         case GET_CATEGORY:
             return {
                 ...state,
                 categories: action.payload,
                 loading: false
+            }
+        case ADD_CATEGORY:
+            return {
+                ...state,
+                categories: [...state.categories, action.payload],
+                isActionComplete: true
             }
         default:
             return state

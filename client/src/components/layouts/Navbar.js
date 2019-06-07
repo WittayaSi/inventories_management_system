@@ -33,7 +33,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <div>
-                <Navbar color="dark" dark expand="md">
+                <Navbar color="dark" dark expand="md" fixed="top">
                     <Container>
                         <NavbarBrand href="/">IMS</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
@@ -41,6 +41,9 @@ export default class NavBar extends Component {
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
                                     <NavLink href="/" active={this.state.currentUrl === "/"}>หน้าหลัก</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="/categories" active={this.state.currentUrl === "/categories"}>ประเภทวัสดุ</NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="/items" active={this.state.currentUrl === "/items"}>วัสดุ</NavLink>

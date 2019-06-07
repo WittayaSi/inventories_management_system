@@ -18,7 +18,7 @@ categoriesRouter.get('/', (req, res) => {
 // @desc    Create new Categories
 // @access  Public
 categoriesRouter.post('/', (req, res) => {
-    const {category_name} = req.body
+    const category_name = req.body.cat
 
     // Simple validation
     if(!category_name){
