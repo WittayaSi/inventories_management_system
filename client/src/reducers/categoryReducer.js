@@ -34,7 +34,7 @@ export default function(state=initialState, action) {
         case ADD_CATEGORY:
             return {
                 ...state,
-                categories: [...state.categories, action.payload],
+                categories: [action.payload, ...state.categories],
                 isActionComplete: true
             }
         case DELETE_CATEGORY:

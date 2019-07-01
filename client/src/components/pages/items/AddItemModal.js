@@ -70,6 +70,7 @@ class AddItemModal extends Component {
             item: {
                 ...this.state.item,
                 category_id: null,
+                item_code: '',
                 item_name: '',
                 item_unit: '',
                 item_price: 0
@@ -98,14 +99,14 @@ class AddItemModal extends Component {
     render() {
         const { categories } = this.props
         return (
-            <Container>
+            <>
 
-                <Button color="primary" className="mb-3 mt-2" onClick={this.toggle}>
-                    Add Item
+                <Button color="primary" className="mb-3 mt-2 btn-block" onClick={this.toggle}>
+                    เพิ่มชนิดของวัสดุ
                 </Button>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>ADD ITEM</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>เพิ่มชนิดของวัสดุ</ModalHeader>
                     <ModalBody>
 
                         { this.state.err_message ? 
@@ -117,7 +118,7 @@ class AddItemModal extends Component {
                         <Form onSubmit={ this.onSubmit }>
 
                             <FormGroup>
-                                <Label for="category_id">Item Category</Label>
+                                <Label for="category_id">ประเภทวัสดุ <span style={{color: 'red'}}>*</span></Label>
                                 <Input
                                     type="select"
                                     name="category_id"
@@ -125,7 +126,7 @@ class AddItemModal extends Component {
                                     placeholder="Item Category"
                                     onChange={ this.onChange }
                                 >
-                                    <option value="">Select Category</option>
+                                    <option value="">เลือกประเภทวัสดุ</option>
                                     {categories.map( (c, index) => (
                                         <option value={c._id} key={index}>{ c.category_name }</option>
                                     ))}
@@ -133,27 +134,38 @@ class AddItemModal extends Component {
                             </FormGroup>
 
                             <FormGroup>
-                                <Label for="item_name">Item Name</Label>
+                                <Label for="item_code">รหัสชนิดของวัสดุ</Label>
+                                <Input
+                                    type="text"
+                                    name="item_code"
+                                    id="item_code"
+                                    placeholder="รหัสชนิดของวัสดุ"
+                                    onChange={ this.onChange }
+                                />
+                            </FormGroup>
+
+                            <FormGroup>
+                                <Label for="item_name">ชื่อชนิดของวัสดุ <span style={{color: 'red'}}>*</span></Label>
                                 <Input
                                     type="text"
                                     name="item_name"
                                     id="item_name"
-                                    placeholder="Item Name"
+                                    placeholder="ชื่อชนิดของวัสดุ"
                                     onChange={ this.onChange }
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="item_unit">Item Unit</Label>
+                                <Label for="item_unit">หน่วยนับ <span style={{color: 'red'}}>*</span></Label>
                                 <Input
                                     type="text"
                                     name="item_unit"
                                     id="item_unit"
-                                    placeholder="Item Unit"
+                                    placeholder="หน่วยนับ"
                                     onChange={ this.onChange }
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="item_price">Item Price</Label>
+                                <Label for="item_price">ราคาต่อหน่วย</Label>
                                 <Input
                                     type="number"
                                     name="item_price"
@@ -169,13 +181,13 @@ class AddItemModal extends Component {
                                         marginTop: '2rem'
                                     }}
                                     className="btn-block"
-                                >Add item</Button>
+                                >เพิ่ม</Button>
                             </FormGroup>
 
                         </Form>
                     </ModalBody>
                 </Modal>
-            </Container>
+            </>
         )
     }
 }

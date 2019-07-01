@@ -23,7 +23,7 @@ class CategorySubTable extends Component {
 
         return (
             <div id="accordion">
-                <Card outline color={items.length > 0 ? "success" : 'danger'}>
+                <Card>
                     <CardHeader>
                         <LeftButton items={items} id={id} />
                         <RightButtonGroup id={category_id}/>

@@ -86,11 +86,11 @@ class AddCategoryModal extends Component {
             <>
 
                 <Button color="primary" className="mb-3 mt-2" onClick={this.toggle}>
-                    ADD CATEGORY
+                    เพิ่มประเภทวัสดุ
                 </Button>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>ADD CATEGORY</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>เพิ่มประเภทวัสดุ</ModalHeader>
                     <ModalBody>
 
                         { this.state.err_message ? 
@@ -102,12 +102,12 @@ class AddCategoryModal extends Component {
                         <Form onSubmit={ this.onSubmit }>
 
                             <FormGroup>
-                                <Label for="category_name">Category Name</Label>
+                                <Label for="category_name">ชื่อประเภทวัสดุ</Label>
                                 <Input
                                     type="text"
                                     name="category_name"
                                     id="category_name"
-                                    placeholder="Category Name"
+                                    placeholder="ชื่อประเภทวัสดุ"
                                     onChange={ this.onChange }
                                 />
                             </FormGroup>
@@ -119,7 +119,7 @@ class AddCategoryModal extends Component {
                                         marginTop: '2rem'
                                     }}
                                     className="btn-block"
-                                >Add</Button>
+                                >เพิ่ม</Button>
                             </FormGroup>
 
                         </Form>

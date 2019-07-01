@@ -22,7 +22,7 @@ categoriesRouter.post('/', (req, res) => {
 
     // Simple validation
     if(!category_name){
-        return res.status(400).json({ message: 'Please enter category name' })
+        return res.status(400).json({ message: 'กรุณากรอกชื่อประเภทวัสดุ' })
     }
     
     const newCategory = new Category({

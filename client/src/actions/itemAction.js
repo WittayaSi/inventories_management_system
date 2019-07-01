@@ -28,7 +28,7 @@ export const getItem = () => dispatch => {
     axios
         .get('/api/items')
         .then( res => {
-            //console.log(res.data)
+            console.log(res.data)
             dispatch({
                 type: GET_ITEM,
                 payload: res.data

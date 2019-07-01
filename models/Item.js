@@ -10,6 +10,10 @@ const ItemSchema = new Schema({
     //     type: String,
     //     required: true
     // },
+    item_code: {
+        type: String,
+        unique: true
+    },
     item_name: {
         type: String,
         unique: true,

@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 
+import BreadCrumb from '../BreadCrumb'
+
 export default class HomePage extends Component {
     render() {
         return (
-            <div>
-                <h1>Home Page</h1>
-            </div>
+            <>
+                
+                <div className="ml-auto"><BreadCrumb /></div>
+
+                <hr style={{borderTop: '5px solid', color: "grey"}}/>
+
+                <h1>Dashboard</h1>
+                
+            </>
         )
     }
 }

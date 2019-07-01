@@ -30,13 +30,16 @@ Category.getItems = (categories) => {
     // Destructure category to items
     let items = []
     items = categories.reduce((a, b) => {
+        //console.log(b)
         const category_id = b._id
+        const category_name = b.category_name
         // create new array 
         let newObject = []
         newObject = b.category_items.reduce((x,y) => {
             // Create new item object
             let item = {
                 category_id,
+                category_name,
                 ...y
             }
             return x.concat(item)

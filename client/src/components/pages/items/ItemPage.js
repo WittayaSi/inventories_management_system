@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { getItem } from '../../../actions/itemAction'
 import AddItemModal from './AddItemModal';
 import ItemTable from './ItemTable'
-//import ItemInfo from './ItemInfo'
+import BreadCrumb from '../../BreadCrumb'
 
 class ItemPage extends Component {
     static propTypes = {
@@ -19,20 +19,25 @@ class ItemPage extends Component {
     render() {
         const { items } = this.props
         return (
-            <div>
-                <h1>Item page</h1>
-                <hr />
+            <>
+                {/* <div className="ml-auto"><h5>ชนิดวัสดุ</h5></div> */}
+
+                <div className="ml-auto"><BreadCrumb basePage="ตั้งค่าระบบ" currentPage="ชนิดของวัสดุ" /></div>
                 
-                <AddItemModal />
+                <hr style={{borderTop: '5px solid', color: "grey"}}/>
 
                 <ItemTable items={items} />
-                
+
+                <br/>
+
+                <AddItemModal />
+
                 {/* {
                     items.map( (item, index) =>(
                         <ItemInfo item={item} key={index}/>
                     ))
                 } */}
-            </div>
+            </>
             
         )
     }

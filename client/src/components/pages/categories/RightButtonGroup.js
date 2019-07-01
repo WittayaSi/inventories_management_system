@@ -25,7 +25,7 @@ class RightButtonGroup extends Component {
                 {/* delete category button */}
                 <Button color="danger" onClick={ 
                     () => {
-                        if (window.confirm(`คุณแน่ใจว่าต้องการลบประเภทวัสดุนี้ หากลบวัสดุทั้งหมดจะถูกลบด้วย?`))
+                        if (window.confirm(`คุณแน่ใจว่าต้องการลบประเภทวัสดุนี้ หากลบ วัสดุทั้งหมด จะถูกลบด้วย?`))
                             this.onClickDeleteCategory(id)
                     }
                 }>

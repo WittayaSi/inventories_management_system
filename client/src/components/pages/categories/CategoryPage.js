@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import CategorySubTable from './CategorySubTable'
 import AddCategoryModal from './AddCategoryModal';
+import BreadCrumb from '../../BreadCrumb'
 
 class CategoryPage extends Component {
     static propTypes ={
@@ -14,16 +15,19 @@ class CategoryPage extends Component {
         const { categories } = this.props
         return (
             <>
-                <div style={{textAlign: "center"}}><h1>Categories Page</h1></div>
-                <hr />
+                {/* <div className="ml-auto"><h5>ประเภทวัสดุ</h5></div> */}
+                
+                <div className="ml-auto"><BreadCrumb basePage="ตั้งค่าระบบ" currentPage="ประเภทวัสดุ" /></div>
 
-                <AddCategoryModal />
+                <hr style={{borderTop: '5px solid', color: "grey"}}/>
 
                 { 
                     categories.map((category, index) => (
                         <CategorySubTable category={category} key={index} id={category.category_name} />
                     ))
                 }
+                <br/>
+                <AddCategoryModal />
             </>
         )
     }

@@ -10,8 +10,11 @@ import {
     Input,
     Alert
 } from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
 
 import { updateItem, setIsActionComplete } from '../../../actions/itemAction'
 import { clearError } from '../../../actions/errorAction'
@@ -95,12 +98,12 @@ class UpdateItemModal extends Component {
     render() {
         return (
             <>
-                <Button color="primary" onClick={this.toggle}>
-                    แก้ไข
-                </Button>
+                <a href="#" onClick={this.toggle}>
+                    <FontAwesomeIcon icon={faEdit} color="orange"/>
+                </a>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>UPDATE ITEM</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>แก้ไขชนิดของวัสดุ</ModalHeader>
                     <ModalBody>
 
                         { this.state.err_message ? 
@@ -112,29 +115,29 @@ class UpdateItemModal extends Component {
                         <Form onSubmit={ this.onSubmit }>
 
                             <FormGroup>
-                                <Label for="item_name">Item Name</Label>
+                                <Label for="item_name">ชื่อชนิดของวัสดุ</Label>
                                 <Input
                                     type="text"
                                     name="item_name"
                                     id="item_name"
-                                    placeholder="Item Name"
+                                    placeholder="ชื่อชนิดของวัสดุ"
                                     value={this.state.item.item_name}
                                     onChange={ this.onChange }
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="item_unit">Item Unit</Label>
+                                <Label for="item_unit">หน่วยนับ</Label>
                                 <Input
                                     type="text"
                                     name="item_unit"
                                     id="item_unit"
-                                    placeholder="Item Unit"
+                                    placeholder="หน่วยนับ"
                                     value={this.state.item.item_unit}
                                     onChange={ this.onChange }
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="item_price">Item Price</Label>
+                                <Label for="item_price">ราคาต่อหน่วย</Label>
                                 <Input
                                     type="number"
                                     min="0"

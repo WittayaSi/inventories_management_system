@@ -11,7 +11,7 @@ const Category = require('../../models/Category')
 // @access  Public 
 itemRouter.get('/', (req, res) => {
     //res.send('lsdkfjsdlfjksdlkj')
-    Category.find({},{ category_items: 1 })
+    Category.find({},{ category_items: 1, category_name: 1 })
         .sort({ "category_items.created_at": -1 })
         .then( categories => {
             // Call Category Model method
@@ -30,7 +30,7 @@ itemRouter.post('/', (req, res) => {
 
     // Simple validation
     if( !category_id || !item_name || !item_unit ){
-        return res.status(400).json({ message: 'Please enter all fields' })
+        return res.status(400).json({ message: 'กรุณากรอกทุกช่องที่มีเครื่องหมาย *' })
     }
 
     const newItem = new Item({
