@@ -42,7 +42,7 @@ itemRouter.post('/', (req, res) => {
     Category.updateOne(
         { _id: category_id },
         { $push: { category_items: newItem } },
-        { upsert:true }
+        { upsert: true }
     )
     .then(() => res.json(newItem))
     .catch(err => res.json(err))
@@ -57,29 +57,42 @@ itemRouter.post('/', (req, res) => {
 // @access  Public
 itemRouter.patch('/:cid/:iid', (req, res) => {
 
-    const { item_name, item_unit, item_price} = req.body
     const { cid, iid } = req.params
-    const now_utc = new Date(Date.now())
-    const now_locale = new Date(now_utc.setHours(now_utc.getHours()+7)) 
-    //console.log(cid, iid)
-    const newItem = {
-        "category_items.$.item_name": item_name,
-        "category_items.$.item_unit": item_unit,
-        "category_items.$.item_price": item_price,
-        "category_items.$.updated_at": now_locale
+    if(Object.keys(req.body).length === 1){
+        const { item_status } = req.body
+        const new_status = item_status === "active" ? "inactive" : "active"
+        Category.updateOne(
+            { _id: ObjectId(cid), category_items: { $elemMatch: { _id: ObjectId(iid) } } },
+            { $set: { "category_items.$.item_status": new_status} }
+        )
+        .then( (result) => res.json({ success: true, result }))
+        .catch( err => res.json({success: false, error: err}))
+    }else{
+        const { item_name, item_unit, item_price} = req.body
+        // const now_utc = new Date(Date.now())
+        // const now_locale = new Date(now_utc.setHours(now_utc.getHours()+7)) 
+        //console.log(cid, iid)
+        
+
+        // Simple validation
+        if(!item_name || !item_unit || !item_price){
+            return res.status(400).json({ message: 'Please enter all fields' })
+        }
+        const newItem = {
+            "category_items.$.item_name": item_name,
+            "category_items.$.item_unit": item_unit,
+            "category_items.$.item_price": item_price
+        }
+
+        Category.updateOne(
+            { _id: ObjectId(cid), category_items: { $elemMatch: { _id: ObjectId(iid) } } },
+            { $set: newItem }
+        )
+        .then( (result) => res.json({ success: true, result }))
+        .catch( err => res.json({success: false, error: err}))
     }
 
-    // Simple validation
-    if(!item_name || !item_unit || !item_price){
-        return res.status(400).json({ message: 'Please enter all fields' })
-    }
-
-    Category.updateOne(
-        { _id: ObjectId(cid), category_items: { $elemMatch: { _id: ObjectId(iid) } } },
-        { $set: newItem }
-    )
-    .then( (result) => res.json({ success: true, result }))
-    .catch( err => res.json({success: false, error: err}))
+    
 })
 
 // @route   DELETE api/items/:cid/:iid

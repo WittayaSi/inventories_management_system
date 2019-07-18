@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { UncontrolledCollapse, Button, CardBody, Card, CardHeader, ButtonGroup, Badge } from 'reactstrap';
+import { UncontrolledCollapse, CardBody, Card, CardHeader } from 'reactstrap';
 
 import ItemTable from '../items/ItemTable'
 import RightButtonGroup from './RightButtonGroup'
@@ -26,7 +26,7 @@ class CategorySubTable extends Component {
                 <Card>
                     <CardHeader>
                         <LeftButton items={items} id={id} />
-                        <RightButtonGroup id={category_id}/>
+                        <RightButtonGroup category={category}/>
                     </CardHeader>
                     <UncontrolledCollapse toggler={`#${id}`} data-parent="#accordion">
                         {

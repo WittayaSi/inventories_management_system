@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const now_utc = new Date(Date.now())
-const now_locale = new Date(now_utc.setHours(now_utc.getHours()+7)) 
+// const now_utc = new Date(Date.now())
+// const now_locale = new Date(now_utc.setHours(now_utc.getHours()+7)) 
 
 const CategorySchema = new Schema({
     category_name: {
@@ -13,16 +13,8 @@ const CategorySchema = new Schema({
     category_items: {
         type: Array,
         default: []
-    },
-    created_at: {
-        type: Date,
-        default: now_locale
-    },
-    updated_at: {
-        type: Date,
-        default: now_locale
     }
-})
+}, { timestamps: true })
 
 module.exports = Category = mongoose.model('categories', CategorySchema)
 

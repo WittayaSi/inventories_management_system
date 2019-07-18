@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import BreadCrumb from '../BreadCrumb'
+import BreadCrumb from '../../BreadCrumb'
+import OfficeForm from './OfficeForm'
 
 export class Office extends Component {
     render() {
@@ -9,9 +10,11 @@ export class Office extends Component {
 
                 <div className="ml-auto"><BreadCrumb basePage="ตั้งค่าระบบ" currentPage="ข้อมูลพื้นฐานของหน่วยงาน" /></div>
 
-                <hr style={{borderTop: '5px solid', color: "grey"}}/> 
+                <hr style={{ borderTop: '5px solid', color: "grey" }}/> 
 
-                <h1>Office Page</h1>
+                
+
+                <OfficeForm />
             </>
         )
     }

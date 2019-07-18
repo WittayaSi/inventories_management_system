@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import {
-    Collapse,
     Navbar,
     NavbarToggler,
     NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
     Container
 } from "reactstrap";
 
@@ -35,7 +27,7 @@ export default class NavBarHeader extends Component {
     }
     render() {
         const logo = <FontAwesomeIcon icon={faDollyFlatbed} size="lg" color="green"/>
-        const userIcon = <FontAwesomeIcon icon={faUser} color="people"/>
+        // const userIcon = <FontAwesomeIcon icon={faUser} color="people"/>
         const setIconCenter = {textAlign: "center"}
         return (
             <div>

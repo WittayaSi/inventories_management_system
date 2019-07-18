@@ -13,12 +13,12 @@ class RightButtonGroup extends Component {
     }
 
     onClickDeleteCategory = (category_id) => {
-        console.log(category_id)
+        //console.log(category_id)
         this.props.deleteCategory(category_id)
     }
 
     render() {
-        const { id } = this.props
+        const { _id, category_name } = this.props.category
         return (
             
             <ButtonGroup className="float-right" size="sm">
@@ -26,14 +26,15 @@ class RightButtonGroup extends Component {
                 <Button color="danger" onClick={ 
                     () => {
                         if (window.confirm(`คุณแน่ใจว่าต้องการลบประเภทวัสดุนี้ หากลบ วัสดุทั้งหมด จะถูกลบด้วย?`))
-                            this.onClickDeleteCategory(id)
+                            this.onClickDeleteCategory(_id)
                     }
                 }>
                     ลบ
                 </Button>
 
                 {/* update category modal */}
-                <UpdateCategoryModal />
+                <UpdateCategoryModal category_name={category_name} id={_id} />
+
             </ButtonGroup>
         )
     }

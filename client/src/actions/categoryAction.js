@@ -41,8 +41,20 @@ export const addCategory = (cat) => dispatch =>{
                 type: ADD_CATEGORY,
                 payload: res.data
             })
+            dispatch(getCategory())
         })
         .catch( err => dispatch(setError(err.response.data,err.response.status,'ADD_CATEGORY')))
+}
+
+export const updateCategory = (id, cat) => dispatch =>{
+    axios.patch(`/api/categories/${id}`, {cat})
+        .then( res => {
+            dispatch({
+                type: UPDATE_CATEGORY
+            })
+            dispatch(getCategory())
+        })
+        .catch( err => dispatch(setError(err.response.data,err.response.status,'UPDATE_CATEGORY')))
 }
 
 export const deleteCategory = (id) => dispatch => {

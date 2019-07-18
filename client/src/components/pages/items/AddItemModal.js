@@ -8,7 +8,6 @@ import {
     FormGroup,
     Label,
     Input,
-    Container,
     Alert
 } from 'reactstrap'
 import { connect } from 'react-redux'
@@ -168,6 +167,7 @@ class AddItemModal extends Component {
                                 <Label for="item_price">ราคาต่อหน่วย</Label>
                                 <Input
                                     type="number"
+                                    step="any"
                                     name="item_price"
                                     id="item_price"
                                     value={this.state.item.item_price}

@@ -49,6 +49,7 @@ app.get('/', (req, res) => {
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/items', require('./routes/api/items'))
 app.use('/api/categories', require('./routes/api/categories'))
+app.use('/api/offices', require('./routes/api/offices'))
 
 app.listen(port, (err) => {
     if(err) throw err

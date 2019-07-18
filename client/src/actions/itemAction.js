@@ -5,7 +5,8 @@ import {
     ADD_ITEM,
     UPDATE_ITEM,
     DELETE_ITEM,
-    IS_ACTION_COMPLETE
+    IS_ACTION_COMPLETE,
+    CHANGE_ITEM_STATUS
 } from '../constant'
 
 import { setError } from './errorAction'
@@ -28,7 +29,7 @@ export const getItem = () => dispatch => {
     axios
         .get('/api/items')
         .then( res => {
-            console.log(res.data)
+            //console.log(res.data)
             dispatch({
                 type: GET_ITEM,
                 payload: res.data
@@ -61,12 +62,12 @@ export const addItem = (item) => dispatch => {
         })
 }
 
-export const updateItem = (cid, iid, item) => dispatch => {
+export const updateItem = (cid, iid, item = null) => dispatch => {
     //console.log(id, item)
     axios
         .patch(`/api/items/${cid}/${iid}`, item)
         .then( res => {
-            console.log(res.data)
+            //console.log(res.data)
             dispatch(getItem())
             dispatch(getCategory())
             dispatch({

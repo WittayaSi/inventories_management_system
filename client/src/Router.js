@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 
 import HomePage from './components/pages/HomePage'
-import OfficePage from './components/pages/OfficePage'
+import OfficePage from './components/pages/offices/OfficePage'
 import DepartmentPage from './components/pages/DepartmentPage'
 
 import ItemPage from './components/pages/items/ItemPage'

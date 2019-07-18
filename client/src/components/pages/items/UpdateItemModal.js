@@ -98,7 +98,7 @@ class UpdateItemModal extends Component {
     render() {
         return (
             <>
-                <a href="#" onClick={this.toggle}>
+                <a href='#/' onClick={this.toggle}>
                     <FontAwesomeIcon icon={faEdit} color="orange"/>
                 </a>
 
@@ -140,6 +140,7 @@ class UpdateItemModal extends Component {
                                 <Label for="item_price">ราคาต่อหน่วย</Label>
                                 <Input
                                     type="number"
+                                    step="any"
                                     min="0"
                                     max="50000"
                                     name="item_price"

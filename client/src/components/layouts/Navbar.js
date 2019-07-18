@@ -22,7 +22,8 @@ import {
     faUniversity, 
     faPuzzlePiece,
     faArchive,
-    faUsers
+    faUsers,
+    faDollyFlatbed
 } from '@fortawesome/free-solid-svg-icons'
 
 export default class Example extends React.Component {
@@ -43,6 +44,7 @@ export default class Example extends React.Component {
     render() {
         const homeIcon = <FontAwesomeIcon icon={faTachometerAlt} size="2x" color="green" />
         const settingIcon = <FontAwesomeIcon icon={faCogs} size="2x" color="#0FEAD6" />
+        const ordersIcon = <FontAwesomeIcon icon={faDollyFlatbed} size="2x" color="orange"/>
         const categoryIcon = <FontAwesomeIcon icon={faListOl}/>
         const itemIcon = <FontAwesomeIcon icon={faThLarge}/>
 
@@ -89,11 +91,11 @@ export default class Example extends React.Component {
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
 
-                                {/* <NavItem style={setIconCenter}>
-                                    <NavLink href="/categories" active={this.state.currentUrl === "/categories"}>
-                                        {categoryIcon} <br />ประเภทวัสดุ
+                                <NavItem style={setIconCenter}>
+                                    <NavLink href="/orders" active={this.state.currentUrl === "/orders"}>
+                                        {ordersIcon} <br />รายการเบิก-จ่าย
                                     </NavLink>
-                                </NavItem> */}
+                                </NavItem>
 
                                 {/* <NavItem style={setIconCenter}>
                                     <NavLink href="/items" active={this.state.currentUrl === "/items"}>
