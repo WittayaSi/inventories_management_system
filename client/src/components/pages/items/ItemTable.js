@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { 
-    Table, 
-    Button,
-    ButtonGroup 
+    Table
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'

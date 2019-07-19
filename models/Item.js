@@ -24,7 +24,7 @@ const ItemSchema = new Schema({
         required: true
     },
     item_price: {
-        type: Schema.Types.Decimal128,
+        type: String,
         default: 0
     },
     item_status: {

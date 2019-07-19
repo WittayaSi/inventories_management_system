@@ -9,7 +9,7 @@ const Category = require('../../models/Category')
 // @access  Public
 categoriesRouter.get('/', (req, res) => {
     Category.find()
-            .sort({ createdAt: -1 })
+            .sort({ updatedAt: -1 })
             .then( categories => res.json(categories) )
             .catch( err => res.json(err) )
 })

@@ -1,5 +1,5 @@
 const express = require('express')
-const {ObjectId} = require('mongodb')
+const { ObjectId } = require('mongodb')
 const officeRouter = express.Router()
 
 const Office = require('../../models/Office')
@@ -13,6 +13,9 @@ officeRouter.get('/', (req, res) => {
         .catch( err => res.json(err))
 })
 
+// @route PATCH api/offices
+// @desc Update an office
+// @access Private
 officeRouter.patch('/', (req, res) => {
     const { _id, full_name, short_name, address } = req.body
     
@@ -27,7 +30,7 @@ officeRouter.patch('/', (req, res) => {
             .then( office => res.json(office) )
             .catch( err => res.json(err) )
     }else{
-        console.log(req.body)
+        //console.log(req.body)
         Office.updateOne(
                 {_id: ObjectId(_id)},
                 {$set: req.body}

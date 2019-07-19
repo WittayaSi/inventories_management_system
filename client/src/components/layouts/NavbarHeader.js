@@ -36,7 +36,7 @@ export default class NavBarHeader extends Component {
                         <NavbarBrand href="#" style={setIconCenter}>
                             {logo} ระบบจัดการวัสดุและครุภัณฑ์สำนักงาน ( OIMS )
                         </NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
+                        {/* <NavbarToggler onClick={this.toggle} /> */}
                         {/* <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <UncontrolledDropdown nav inNavbar>

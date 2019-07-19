@@ -50,6 +50,7 @@ app.use('/api/users', require('./routes/api/users'))
 app.use('/api/items', require('./routes/api/items'))
 app.use('/api/categories', require('./routes/api/categories'))
 app.use('/api/offices', require('./routes/api/offices'))
+app.use('/api/departments', require('./routes/api/departments'))
 
 app.listen(port, (err) => {
     if(err) throw err

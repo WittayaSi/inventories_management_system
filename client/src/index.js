@@ -11,12 +11,14 @@ import './index.css'
 import { getItem } from './actions/itemAction'
 import { getCategory } from './actions/categoryAction'
 import { getOffice } from './actions/officeAction'
+import { getDepartments } from './actions/departmentAction'
 
 import * as serviceWorker from './serviceWorker'
 
 store.dispatch(getItem())
 store.dispatch(getCategory())
 store.dispatch(getOffice())
+store.dispatch(getDepartments())
 
 
 const app = (
