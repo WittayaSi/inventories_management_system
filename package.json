@@ -23,7 +23,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.0",
     "mdbreact": "^4.16.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.5.11",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
